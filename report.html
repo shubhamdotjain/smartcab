@@ -13684,7 +13684,7 @@ The frequency of making total bad decisions is about 0.4 and among those frequen
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>The size of ths state space would pe size of waypoint <em> size of light </em> size of oncoming ie 4 <em> 2 </em> 4 which equals 32. Yes driving agent could learn a policy for each possible state within a reasonable number of training trials. It can be rewarded and punished according to the situation or different states and when it sees a similar state or situation like this driving agent can take action according to what it has learn by maximizing the reward.</p>
+<p>The size of ths state space would be product  size of waypoint (left/right/forward) size of light(green/red)  size of oncoming(none/left/right/forward) size of intended direction (none/left/right/forward) of vehicle in left ie product of 3  2  4  4 which equals 96. Yes driving agent could learn a policy for each possible state within a reasonable number of training trials (100). It can be rewarded and punished according to the situation or different states and when it sees a similar state or situation like this driving agent can take action according to what it has learn by maximizing the reward.</p>
 <p>For example if the light is red but smart cab jumps it, it should be penalised heavily. If the smart cab had to move left to move close to destination but instead it moves right, it should be penalised again. Similiarly rewarding and penalising at every state can help in making a plan and helping the smart cab in taking the best action.</p>
 
 </div>
@@ -18051,10 +18051,9 @@ zMzMzKrOSSkzMzMzMzMzM6u6/w/SLDI7eRq5IgAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong> 
-When light is green, the learning agent definitely has the right of way when taking the action of moving forward or turning right. The only exception to this is when the learning agent wants to turn left, but there is an oncoming car that is moving forward. In this case, the other car has the right of way. Thus action None should have highest reward in that state. But if there is no car oncoming, the learning agent may turn left and in this state action left should have highest reward
-When light is red, the learning agent may not take the action of turning left or move forward. It could turn right, but only when there is no car on the left, or if there is a car on the left but it is not moving forward. Accordingly rewards should be given to the highest priority.</p>
+An example of an optimal policy would be when light is red, the learning agent may not take the action of turning left or move forward. It could turn right, but only when there is no car on the left, or if there is a car on the left but it is not moving forward. Accordingly rewards should be given to the highest priority. Another example of an optimal policy is if states = (waypoint: Forward, light: Green, oncoming: None, left: None, right: None), the Agent would move forward.</p>
 <p>In the other words the learning agent should follow traffic rules and avoid accidents.</p>
-<p>Yes there are some states where optimal policy would be different, since my driving agent is picking the action with highest reward. In States like below it can get confused which action to pick since more than 1 state has high reward.</p>
+<p>The policy is correct for most states but a few where there are some states where the agent hasn't been exposed to the optimal action (hence its reward remains at zero) but has been exposed to the other actions thus when picking the action that brings max reward it doesn't choose the expected optimal policy.Example:</p>
 <p>('right', 'red', 'forward', 'left')</p>
 <p>-- forward : 0.00</p>
 <p>-- right : 0.00</p>
